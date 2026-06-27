@@ -1,0 +1,27 @@
+.layout-builder__link--clone-gin {
+  position: absolute;
+  top: -18px;
+  left: 20px;
+  display: inline-block;
+  overflow: hidden;
+  width: 16px;
+  height: 16px;
+  text-indent: -9999px;
+  background-color: #8e929c;
+  -webkit-mask: url("../icons/clone.svg") no-repeat center;
+  -webkit-mask-size: 17px 17px;
+  mask: url("../icons/clone.svg") no-repeat center;
+  mask-size: 17px 17px;
+}
+
+.layout-builder__link--clone-gin:hover {
+  background-color: rgb(5, 80, 230);
+}
+
+.layout-builder__link--remove {
+  left: 40px !important;
+}
+
+.layout-builder__link--configure {
+  left: 60px !important;
+}

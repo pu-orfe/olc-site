@@ -1,0 +1,5 @@
+@media (min-width: 62rem) {
+  .layout__region--second .menu--footer, nav.contextual-region.with-block-description.block.block-menu.navigation.menu--footer {
+    text-align: center;
+  }
+}

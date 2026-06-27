@@ -1,0 +1,6 @@
+@media (min-width: 62rem) {
+
+.view-alerts .alert-row .alert-body {
+    text-align: center;
+  }
+}

@@ -164,7 +164,20 @@
   const replaceInPlace = function(placeholderButtonEl, location, src, aspect, width, height, fullscreen, title) {
     let frame;
 
-    if (src.includes('youtube.com/')) {
+    let parsedUrl;
+    try {
+      parsedUrl = new URL(src, window.location.href);
+    } catch (e) {}
+
+    let isYouTube = false;
+    let isVimeo = false;
+    if (parsedUrl) {
+      const hostname = parsedUrl.hostname.toLowerCase();
+      isYouTube = hostname === 'youtube.com' || hostname === 'www.youtube.com' || hostname === 'youtube-nocookie.com' || hostname === 'www.youtube-nocookie.com';
+      isVimeo = hostname === 'vimeo.com' || hostname === 'www.vimeo.com' || hostname.endsWith('.vimeo.com');
+    }
+
+    if (isYouTube) {
       frame = createAndPlayYouTubeEmbed(placeholderButtonEl, location, src, aspect, width, height, fullscreen, title);
     }
     else {
@@ -172,7 +185,7 @@
       placeholderButtonEl.insertAdjacentElement(location, frame);
       // We know we can programmatically start Vimeo videos, but not other
       // generic video sources.
-      if (src.includes('vimeo')) {
+      if (isVimeo) {
         playVimeo(frame);
       }
     }

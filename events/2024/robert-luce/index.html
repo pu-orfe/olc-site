@@ -6,7 +6,21 @@ window.drupalSettings = window.drupalSettings || {};
 window.Drupal.t = window.Drupal.t || function(str) { return str; };
 window.bodyScrollLock = window.bodyScrollLock || { disableBodyScroll: function() {}, enableBodyScroll: function() {}, clearAllBodyScrollLocks: function() {} };
 window.smartquotes = window.smartquotes || function() {};
-window.AriaAutocomplete = window.AriaAutocomplete || function() {};</script>
+window.AriaAutocomplete = window.AriaAutocomplete || function() {};
+window.Drupal.attachBehaviors = window.Drupal.attachBehaviors || function(context, settings) {
+  context = context || document;
+  settings = settings || window.drupalSettings;
+  for (const k in window.Drupal.behaviors) {
+    if (typeof window.Drupal.behaviors[k].attach === 'function') {
+      try {
+        window.Drupal.behaviors[k].attach(context, settings);
+      } catch (e) { console.error('Error attaching behavior ' + k, e); }
+    }
+  }
+};
+document.addEventListener('DOMContentLoaded', function() {
+  window.Drupal.attachBehaviors(document, window.drupalSettings);
+});</script>
 <meta charset="utf-8"/>
 <meta content="In recent years the global solution of nonconvex mixed-integer optimization problems has recieved more and more attention from the commercial optimization software industry, significantly shifting the boundary of what's considered solvable and what isn't. In this session we take a look under the hood of Gurobi, which uses a spatial branch-and-bound" name="description"/>
 <link href="index.html" rel="canonical"/>
@@ -326,18 +340,14 @@ Sherrerd Hall, Charlton Street, Princeton, NJ 08544<br/>
 <script src="../../../profiles/ps/modules/custom/enhanced_date/js/enhanced_date_field_formatter_th6mi8.js"></script>
 <script src="../../../profiles/ps/themes/ps_base/js/repeat-dates-enhancer_th6mi8.js"></script>
 <script src="../../../profiles/ps/themes/ps_base/js/structured-node_th6mi8.js"></script>
-
-
 <script src="../../../profiles/ps/modules/custom/ps_core/js/utils_th6mi8.js"></script>
 <script src="../../../profiles/ps/modules/custom/ps_core/js/columns_th6mi8.js"></script>
 <script src="../../../profiles/ps/modules/custom/ps_core/js/tables_th6mi8.js"></script>
 <script src="../../../profiles/ps/modules/custom/ps_core/js/content_list_a11y_enhancer_th6mi8.js"></script>
 <script src="../../../profiles/ps/modules/custom/ps_core/js/content_list_ajax_th6mi8.js"></script>
 <script src="../../../profiles/ps/modules/custom/ps_core/js/enhanced-focus_th6mi8.js"></script>
-
 <script src="../../../profiles/ps/modules/custom/ps_core/js/link_behavior_th6mi8.js"></script>
 <script src="../../../profiles/ps/modules/custom/ps_core/js/logout-link-username_th6mi8.js"></script>
-
 <script src="../../../profiles/ps/modules/custom/ps_events/js/events_poster_modal_th6mi8.js"></script>
 <script src="../../../profiles/ps/themes/ps_tiger/js/header_th6mi8.js"></script>
 <script src="../../../profiles/ps/themes/ps_tiger/js/image-no-border_th6mi8.js"></script>

@@ -6,7 +6,21 @@ window.drupalSettings = window.drupalSettings || {};
 window.Drupal.t = window.Drupal.t || function(str) { return str; };
 window.bodyScrollLock = window.bodyScrollLock || { disableBodyScroll: function() {}, enableBodyScroll: function() {}, clearAllBodyScrollLocks: function() {} };
 window.smartquotes = window.smartquotes || function() {};
-window.AriaAutocomplete = window.AriaAutocomplete || function() {};</script>
+window.AriaAutocomplete = window.AriaAutocomplete || function() {};
+window.Drupal.attachBehaviors = window.Drupal.attachBehaviors || function(context, settings) {
+  context = context || document;
+  settings = settings || window.drupalSettings;
+  for (const k in window.Drupal.behaviors) {
+    if (typeof window.Drupal.behaviors[k].attach === 'function') {
+      try {
+        window.Drupal.behaviors[k].attach(context, settings);
+      } catch (e) { console.error('Error attaching behavior ' + k, e); }
+    }
+  }
+};
+document.addEventListener('DOMContentLoaded', function() {
+  window.Drupal.attachBehaviors(document, window.drupalSettings);
+});</script>
 <script nonce="9af3f496-458d-4d8e-902b-08b2b51ec94a">
 (function () {
 try {

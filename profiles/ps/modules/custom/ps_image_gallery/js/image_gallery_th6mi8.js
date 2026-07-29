@@ -77,9 +77,7 @@
                 $imageElement.removeAttr('data-srcset');
               }
               // Prevent javascript: URLs or other dangerous protocols
-              let isRelative = dataSrc.indexOf(':') === -1;
-              let isHttp = /^(https?:)?\/\//i.test(dataSrc);
-              if (isRelative || isHttp) {
+              if (dataSrc.startsWith('/') || dataSrc.startsWith('http://') || dataSrc.startsWith('https://') || dataSrc.startsWith('./') || dataSrc.startsWith('../') || dataSrc.startsWith('//')) {
                 img.src = dataSrc;
               }
               $imageElement.removeAttr('data-src');

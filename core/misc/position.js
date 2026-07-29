@@ -442,8 +442,8 @@
     let target;
     if (typeof options.of === 'string') {
       target = $(document).find(options.of);
-    } else if (options.of && typeof options.of === 'object') {
-      target = $(options.of);
+    } else if (options.of) {
+      target = $().add(options.of);
     } else {
       target = $();
     }

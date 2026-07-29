@@ -23,7 +23,12 @@
               let img = $image[0];
               const dataSrc = $image.attr('data-src');
               if (dataSrc) {
-                img.src = dataSrc;
+                // Prevent javascript: URLs or other dangerous protocols
+                let isRelative = dataSrc.indexOf(':') === -1;
+                let isHttp = /^(https?:)?\/\//i.test(dataSrc);
+                if (isRelative || isHttp) {
+                  img.src = dataSrc;
+                }
               }
               const dataSrcSet = $image.attr('data-srcset');
               if (dataSrcSet) {

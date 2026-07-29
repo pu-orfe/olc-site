@@ -76,7 +76,12 @@
                 img.srcset = dataSrcset;
                 $imageElement.removeAttr('data-srcset');
               }
-              img.src = dataSrc;
+              // Prevent javascript: URLs or other dangerous protocols
+              let isRelative = dataSrc.indexOf(':') === -1;
+              let isHttp = /^(https?:)?\/\//i.test(dataSrc);
+              if (isRelative || isHttp) {
+                img.src = dataSrc;
+              }
               $imageElement.removeAttr('data-src');
               // Activate the IE11 shim that adds a fallback for object-fit
               // positioning.

@@ -442,9 +442,7 @@
     let target;
     if (typeof options.of === 'string') {
       target = $(document).find(options.of);
-    } else if (options.of instanceof $) {
-      target = options.of;
-    } else if (options.of && (options.of.nodeType || options.of === window || options.of === document || options.of.preventDefault)) {
+    } else if (options.of && typeof options.of === 'object') {
       target = $(options.of);
     } else {
       target = $();

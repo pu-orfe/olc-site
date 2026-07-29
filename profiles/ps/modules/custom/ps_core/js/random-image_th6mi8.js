@@ -25,7 +25,7 @@
               if (dataSrc) {
                 // Prevent javascript: URLs or other dangerous protocols
                 if (dataSrc.startsWith('/') || dataSrc.startsWith('http://') || dataSrc.startsWith('https://') || dataSrc.startsWith('./') || dataSrc.startsWith('../') || dataSrc.startsWith('//')) {
-                  img.src = dataSrc;
+                  img.src = encodeURI(decodeURI(dataSrc));
                 }
               }
               const dataSrcSet = $image.attr('data-srcset');

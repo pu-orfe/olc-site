@@ -78,7 +78,7 @@
               }
               // Prevent javascript: URLs or other dangerous protocols
               if (dataSrc.startsWith('/') || dataSrc.startsWith('http://') || dataSrc.startsWith('https://') || dataSrc.startsWith('./') || dataSrc.startsWith('../') || dataSrc.startsWith('//')) {
-                img.src = dataSrc;
+                img.src = encodeURI(decodeURI(dataSrc));
               }
               $imageElement.removeAttr('data-src');
               // Activate the IE11 shim that adds a fallback for object-fit

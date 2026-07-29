@@ -64,7 +64,8 @@
             if (multipleFutureDates) {
               allyText += ': ' + dateText;
             }
-            let $addToCalLink = $('<a href="#" class="add-to-calendar" role="button"><span class="visually-hidden">' + allyText + '</span><span class="add-to-calendar-icon" title="Add to calendar">&#128197;</span></a>');
+            let $addToCalLink = $('<a href="#" class="add-to-calendar" role="button"><span class="visually-hidden"></span><span class="add-to-calendar-icon" title="Add to calendar">&#128197;</span></a>');
+            $addToCalLink.find('.visually-hidden').text(allyText);
 
             let openCalendarChoiceDialog = function () {
               // Build the dialog that lets the user choose the format.

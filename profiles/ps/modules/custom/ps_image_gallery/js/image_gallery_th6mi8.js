@@ -67,15 +67,21 @@
         // move them to the normal non-data versions. This will force the browser to load them.
         let preLoadImage = function (index) {
           let $imageElement = $images.eq(index).find('img');
-          if ($imageElement.length && $imageElement.attr('data-src')) {
-            $imageElement
-              .attr('srcset', $imageElement.attr('data-srcset'))
-              .removeAttr('data-srcset')
-              .attr('src', $imageElement.attr('data-src'))
-              .removeAttr('data-src');
-            // Activate the IE11 shim that adds a fallback for object-fit
-            // positioning.
-            objectFitImages($imageElement[0]);
+          if ($imageElement.length) {
+            let img = $imageElement[0];
+            let dataSrcset = $imageElement.attr('data-srcset');
+            let dataSrc = $imageElement.attr('data-src');
+            if (dataSrc) {
+              if (dataSrcset) {
+                img.srcset = dataSrcset;
+                $imageElement.removeAttr('data-srcset');
+              }
+              img.src = dataSrc;
+              $imageElement.removeAttr('data-src');
+              // Activate the IE11 shim that adds a fallback for object-fit
+              // positioning.
+              objectFitImages(img);
+            }
           }
         };
 

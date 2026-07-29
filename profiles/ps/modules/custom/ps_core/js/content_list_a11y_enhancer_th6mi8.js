@@ -66,8 +66,8 @@
             let $dateBadge = $(this).find('.content-list-item-date-badge');
             if ($dateBadge.length) {
               if ($dateBadge.data('prepend')) {
-                let markup = '<span class="sr-only">' + $dateBadge.text() + ': </span>';
-                $(this).find('.field--name-title').prepend(markup);
+                let $srOnly = $('<span></span>').addClass('sr-only').text($dateBadge.text() + ': ');
+                $(this).find('.field--name-title').prepend($srOnly);
               }
             }
           }

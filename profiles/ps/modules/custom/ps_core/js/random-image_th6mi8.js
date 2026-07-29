@@ -18,15 +18,16 @@
             $(this).removeClass('invisible')
               .removeAttr('aria-hidden')
               .removeAttr('tabindex');
-            let $image = $('img', this);
+            let $image = $(this).find('img');
             if ($image.length) {
-              const dataSrc = $($image).attr('data-src');
+              let img = $image[0];
+              const dataSrc = $image.attr('data-src');
               if (dataSrc) {
-                $($image).attr('src', dataSrc)
+                img.src = dataSrc;
               }
-              const dataSrcSet = $($image).attr('data-srcset');
+              const dataSrcSet = $image.attr('data-srcset');
               if (dataSrcSet) {
-                $($image).attr('srcset', dataSrcSet)
+                img.srcset = dataSrcSet;
               }
             }
           }

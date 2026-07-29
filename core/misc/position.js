@@ -439,10 +439,16 @@
     const offsets = {};
 
     // Make sure string options are treated as CSS selectors
-    const target =
-      typeof options.of === 'string'
-        ? $(document).find(options.of)
-        : $(options.of);
+    let target;
+    if (typeof options.of === 'string') {
+      target = $(document).find(options.of);
+    } else if (options.of instanceof $) {
+      target = options.of;
+    } else if (options.of && (options.of.nodeType || options.of === window || options.of === document || options.of.preventDefault)) {
+      target = $(options.of);
+    } else {
+      target = $();
+    }
     const dimensions = getDimensions(target);
     const targetWidth = dimensions.width;
     const targetHeight = dimensions.height;
